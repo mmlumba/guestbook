@@ -1,25 +1,15 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import GuestBook from './GuestBook';
+import GuestInput from './GuestInput'
+import { Typography } from '@material-ui/core'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Guestbook
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Typography variant="h3">Guestbook</Typography>
+      <Typography variant="body1">Please leave constructive comments only :)</Typography>
+      <GuestInput />
       <GuestBook />
     </div>
   );
