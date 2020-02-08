@@ -1,15 +1,29 @@
 const { gql } = require('apollo-server');
 
 const typeDefs = gql`
-type Query {
-  comments: [Comment]
-}
+  scalar ObjectID
+  scalar Date
+
+  type Query {
+    comments: [Comment]
+  }
+
+  type Mutation {
+    addComment(comment: CommentInput!): Comment
+  }
+
+  input CommentInput {
+    name: String
+    email: String
+    body: String
+  }
 
   type Comment {
-      id: Int,
-      name: String,
-      email: String,
-      body: String
+    id: ObjectID
+    name: String
+    email: String
+    body: String
+    createdAt: Date
   }
 `;
 

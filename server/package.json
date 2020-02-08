@@ -11,7 +11,11 @@
   "dependencies": {
     "apollo-server": "^2.9.16",
     "axios": "^0.19.1",
+    "dotenv": "^8.2.0",
     "graphql": "^14.5.8",
+    "graphql-scalar-objectid": "^0.1.2",
+    "mongodb": "^3.5.2",
+    "mongoose": "^5.8.11",
     "node-fetch": "^2.6.0"
   },
   "devDependencies": {
