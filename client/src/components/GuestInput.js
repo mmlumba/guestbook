@@ -1,20 +1,8 @@
 import React, { useState } from 'react'
 import { Container, TextField, Button } from '@material-ui/core'
 import { useMutation } from '@apollo/client';
-import gql from 'graphql-tag'
-import { GET_COMMENTS } from './GuestBook'
+import { GET_COMMENTS, ADD_COMMENT } from '../graphql'
 
-const ADD_COMMENT = gql`
-    mutation addComment($comment:CommentInput!) {
-        addComment(comment:$comment) {
-            id
-            name
-            email
-            body
-            createdAt
-        }
-    }
-`
 const GuestInput = () => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')

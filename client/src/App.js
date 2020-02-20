@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import GuestBook from './GuestBook';
-import GuestInput from './GuestInput'
+import GuestBook from './components/GuestBook';
+import GuestInput from './components/GuestInput'
 import { Typography } from '@material-ui/core'
 
 function App() {

@@ -1,6 +1,5 @@
 import React from 'react'
 import { useQuery } from '@apollo/client';
-import gql from 'graphql-tag'
 import {
     CircularProgress,
     Table,
@@ -12,20 +11,8 @@ import {
     Typography,
     Paper
 } from '@material-ui/core'
-import { DateTime }from 'luxon'
-import Actions from './Actions'
-
-export const GET_COMMENTS = gql`
-    query comments {
-        comments {
-            id
-            name
-            email
-            body
-            createdAt
-        }
-    }
-`
+import { GET_COMMENTS } from '../graphql'
+import GuestBookRow from './GuestBookRow';
 
 const GuestBook = () => {
     const { data, loading, error } = useQuery(GET_COMMENTS)
@@ -38,12 +25,8 @@ const GuestBook = () => {
         console.log(error)
         return <Typography variant="body1">{error.message}</Typography>
     }
-    const dateFormat = (date) => {
-        return DateTime.fromMillis(Number(date)).toLocaleString(DateTime.DATETIME_FULL)
-    }
     
     const rows = data.comments
-    console.log('data ? ', rows)
     return <TableContainer component={Paper}>
         <Table aria-label="guestbook">
             <TableHead>
@@ -58,14 +41,7 @@ const GuestBook = () => {
             </TableHead>
             <TableBody>
                 {rows.map((row, i) => (
-                    <TableRow key={row.id}>
-                        <TableCell>{i+1}</TableCell>
-                        <TableCell>{row.name}</TableCell>
-                        <TableCell>{row.email}</TableCell>
-                        <TableCell>{row.body}</TableCell>
-                        <TableCell>{dateFormat(row.createdAt)}</TableCell>
-                        <TableCell><Actions /></TableCell>
-                    </TableRow>
+                    <GuestBookRow row={row} rowIndex={i}/>
                 ))}
             </TableBody>
         </Table>
