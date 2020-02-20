@@ -14,10 +14,17 @@ const GuestBookRow = (props) => {
         {
             update(cache, { data: { editComment } }) {
                 const { comments } = cache.readQuery({ query: GET_COMMENTS })
-                const updatedComment = Object.assign(editComment, comments.filter(comment => comment.id === editComment.id))
+                const originalComments = comments
+                const index = originalComments.findIndex(comment => comment.id === editComment.id)
+                const updatedComment = Object.assign(editComment, originalComments[index])
+                const updatedComments = [
+                    ...originalComments.slice(0, index),
+                    updatedComment,
+                    ...originalComments.slice(index + 1)
+                ]
                 cache.writeQuery({
                     query: GET_COMMENTS,
-                    data: { comments: [...comments, updatedComment] },
+                    data: { comments: updatedComments },
                 });
             }
         }
