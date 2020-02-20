@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { DisplayRow, EditRow } from './RowTypes'
-import { GET_COMMENTS, REMOVE_COMMENT } from '../graphql'
+import { GET_COMMENTS, EDIT_COMMENT, REMOVE_COMMENT } from '../graphql'
 import { useMutation } from '@apollo/client'
 
 const GuestBookRow = (props) => {
@@ -8,7 +8,20 @@ const GuestBookRow = (props) => {
     const [isEditing, setIsEditing] = useState(false)
     const [name, setName] = useState(row.name)
     const [email, setEmail] = useState(row.email)
-    const [comment, setComment] = useState(row.comment)
+    const [comment, setComment] = useState(row.body)
+
+    const [editComment] = useMutation(EDIT_COMMENT, 
+        {
+            update(cache, { data: { editComment } }) {
+                const { comments } = cache.readQuery({ query: GET_COMMENTS })
+                const updatedComment = Object.assign(editComment, comments.filter(comment => comment.id === editComment.id))
+                cache.writeQuery({
+                    query: GET_COMMENTS,
+                    data: { comments: [...comments, updatedComment] },
+                });
+            }
+        }
+    )
 
     const [removeComment] = useMutation(REMOVE_COMMENT,
         {
@@ -32,8 +45,17 @@ const GuestBookRow = (props) => {
             comment={comment}
             setComment={setComment} 
             cancelEdit={() => setIsEditing(false)}
-            finishEdit={() => {
-                console.log('something?')
+            finishEdit={async () => {
+                await editComment({ 
+                    variables: {
+                        commentId: row.id,
+                        comment: { 
+                            name, 
+                            email, 
+                            body: comment 
+                        }
+                    }
+                })
                 setIsEditing(false)
             }}
             row={row} 
