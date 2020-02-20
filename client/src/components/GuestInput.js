@@ -24,6 +24,9 @@ const GuestInput = () => {
     const onClick = () => {
         const commentBody = { name, email, body: comment }
         addComment({ variables: { comment: commentBody }})
+        setName('')
+        setEmail('')
+        setComment('')
     }
 
     return <Container maxWidth="md">

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {
     Box,
     Button,
@@ -8,6 +8,8 @@ import {
 } from '@material-ui/core'
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
+import UpdateIcon from '@material-ui/icons/Update';
+import CancelIcon from '@material-ui/icons/Cancel';
 import { DateTime } from 'luxon'
 
 export const DisplayRow = (props) => {
@@ -97,7 +99,7 @@ export const EditRow = (props) => {
             <Box>
                 <Button
                     variant="contained"
-                    startIcon={<EditIcon />}
+                    startIcon={<UpdateIcon />}
                     onClick={finishEdit}
                 >
                     Update
@@ -105,7 +107,7 @@ export const EditRow = (props) => {
                 <Button
                     variant="contained"
                     color="secondary"
-                    startIcon={<DeleteIcon />}
+                    startIcon={<CancelIcon />}
                     onClick={cancelEdit}
                 >
                     Cancel

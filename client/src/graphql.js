@@ -23,3 +23,27 @@ export const ADD_COMMENT = gql`
         }
     }
 `
+
+export const EDIT_COMMENT = gql`
+    mutation editComment($commentId: ObjectID!, $comment:CommentInput!) {
+        editComment(commentId: $commentId, comment: $comment) {
+            id
+            name
+            email
+            body
+            createdAt
+        }
+    }
+`
+
+export const REMOVE_COMMENT = gql`
+    mutation removeComment($commentId:ObjectID!) {
+        deleteComment(commentId: $commentId) {
+            id
+            name
+            email
+            body
+            createdAt
+        }
+    }
+`

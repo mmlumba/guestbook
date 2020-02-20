@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { DisplayRow, EditRow } from './RowTypes'
+import { GET_COMMENTS, REMOVE_COMMENT } from '../graphql'
+import { useMutation } from '@apollo/client'
 
 const GuestBookRow = (props) => {
     const { row, rowIndex } = props
@@ -7,6 +9,20 @@ const GuestBookRow = (props) => {
     const [name, setName] = useState(row.name)
     const [email, setEmail] = useState(row.email)
     const [comment, setComment] = useState(row.comment)
+
+    const [removeComment] = useMutation(REMOVE_COMMENT,
+        {
+            update(cache, { data: { deleteComment } }) {
+                const { comments } = cache.readQuery({ query: GET_COMMENTS })
+                const newComments = comments.filter(comment => comment.id !== deleteComment.id)
+                cache.writeQuery({
+                    query: GET_COMMENTS,
+                    data: { comments: newComments },
+                });
+            }
+        }
+    )
+
     return isEditing ? 
         <EditRow
             name={name}
@@ -25,10 +41,7 @@ const GuestBookRow = (props) => {
         /> :
         <DisplayRow
             beginEdit={() => setIsEditing(true)}
-            removeComment={() => {
-                console.log('remove comment!')
-                setIsEditing(false)
-            }}
+            removeComment={async () => await removeComment({ variables: { commentId: row.id }})}
             row={row} 
             rowIndex={rowIndex} 
         />

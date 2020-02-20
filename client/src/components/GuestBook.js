@@ -41,7 +41,7 @@ const GuestBook = () => {
             </TableHead>
             <TableBody>
                 {rows.map((row, i) => (
-                    <GuestBookRow row={row} rowIndex={i}/>
+                    <GuestBookRow key={row.id} row={row} rowIndex={i}/>
                 ))}
             </TableBody>
         </Table>
