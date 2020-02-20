@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Button, Icon } from '@material-ui/core'
+import { Box, Button } from '@material-ui/core'
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 

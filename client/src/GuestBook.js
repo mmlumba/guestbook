@@ -1,5 +1,5 @@
 import React from 'react'
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import gql from 'graphql-tag'
 import {
     CircularProgress,
@@ -15,7 +15,7 @@ import {
 import { DateTime }from 'luxon'
 import Actions from './Actions'
 
-const GET_COMMENTS = gql`
+export const GET_COMMENTS = gql`
     query comments {
         comments {
             id
@@ -43,6 +43,7 @@ const GuestBook = () => {
     }
     
     const rows = data.comments
+    console.log('data ? ', rows)
     return <TableContainer component={Paper}>
         <Table aria-label="guestbook">
             <TableHead>

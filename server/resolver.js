@@ -39,12 +39,18 @@ const resolver = {
         }
     },
     Mutation: {
-        addComment: (obj, args, ctx, info) => {
-            const randId = parseInt((Math.random()*1000).toFixed(2))
-            const commentBody = Object.assign(args.comment, { id: randId })
-            console.log(commentBody)
-            return commentBody
-        }
+        addComment: (obj, args, context, info) => {
+            const newComment = context.GuestbookAPI.addComment(args)
+            return newComment
+        },
+        editComment: (obj, args, context, info) => {
+            const updatedComment = context.GuestbookAPI.editComment(args)
+            return updatedComment
+        },
+        deleteComment: (obj, args, context, info) => {
+            const removedComment = context.GuestbookAPI.removeComment(args)
+            return removedComment
+        },
     }
 }
 

@@ -10,6 +10,8 @@ const typeDefs = gql`
 
   type Mutation {
     addComment(comment: CommentInput!): Comment
+    editComment(commentId: ObjectID!, comment: CommentInput!): Comment
+    deleteComment(commentId: ObjectID!): Comment
   }
 
   input CommentInput {

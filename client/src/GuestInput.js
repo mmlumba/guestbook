@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { Container, TextField, Button } from '@material-ui/core'
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 import gql from 'graphql-tag'
+import { GET_COMMENTS } from './GuestBook'
 
 const ADD_COMMENT = gql`
     mutation addComment($comment:CommentInput!) {
@@ -10,6 +11,7 @@ const ADD_COMMENT = gql`
             name
             email
             body
+            createdAt
         }
     }
 `
@@ -17,13 +19,25 @@ const GuestInput = () => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [comment, setComment] = useState('')
-    const [addComment, { data }] = useMutation(ADD_COMMENT)
+    const [addComment] = useMutation(
+        ADD_COMMENT, 
+        {
+            update(cache, { data: { addComment } }) {
+                const { comments } = cache.readQuery({ query: GET_COMMENTS });
+
+                cache.writeQuery({
+                    query: GET_COMMENTS,
+                    data: { comments: comments.concat([addComment]) },
+                });
+            }
+        }
+    )
 
     const onClick = () => {
         const commentBody = { name, email, body: comment }
-        // console.log('COMMENT BODY', commentBody)
         addComment({ variables: { comment: commentBody }})
     }
+
     return <Container maxWidth="md">
         <form>
             <TextField 
