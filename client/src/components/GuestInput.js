@@ -21,10 +21,29 @@ const GuestInput = () => {
         }
     )
 
+    // this is mutation object array. 
+    // first obj is mutation function
+    // second obj is obj with additional keys (for your usage)
+    // console.log('mutation object', useMutation(ADD_COMMENT))
+
     const onClick = () => {
+        // accepted input type (from schema.js):
+        // {
+        //     name: String
+        //     email: String
+        //     body: String
+        // }
+
         const commentBody = { name, email, body: comment }
-        // console.log('my comment', commentBody)
+
+        // this is incorrect b/c proper attribute of comment content is "body" in schema
+        // const incorrectCommentBody = { name, email, comment }
+
+        console.log('my comment', commentBody)
+        console.log('this is where the add mutation is supposed to be')
         addComment({ variables: { comment: commentBody }})
+
+        // clears the form after submit
         setName('')
         setEmail('')
         setComment('')

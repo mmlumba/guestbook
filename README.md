@@ -1,6 +1,8 @@
 # Guestbook
 A fullstack JavaScript app that allows a user to add comments to a web app. It also shows the wonderful magic of GraphQL, Apollo, and React.
 
+**This branch is used for presentations, which is why there's lots of comments in the code :)**
+
 ![guestbook app](app-preview.png "Guestbook")
 
 Both folders (client/server) are separate apps that need to be run separately.

@@ -17,13 +17,19 @@ import GuestBookRow from './GuestBookRow';
 const GuestBook = () => {
     const { data, loading, error } = useQuery(GET_COMMENTS)
 
+    // this returns query object.
+    // full details of each property can be found here:
+    //   https://www.apollographql.com/docs/react/data/queries/#result
+    
+    console.log('entire query object', useQuery(GET_COMMENTS))
+
     if (loading) {
         // debugger
         return <CircularProgress />
     }
     if (error) {
         console.log(error)
-        return <Typography variant="body1">{error.message}</Typography>
+        return <Typography variant="body1">Oh no! We can't get comments at this time. Please try again later 😢</Typography>
     }
     
     const rows = data.comments
