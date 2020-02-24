@@ -23,6 +23,7 @@ const GuestInput = () => {
 
     const onClick = () => {
         const commentBody = { name, email, body: comment }
+        // console.log('my comment', commentBody)
         addComment({ variables: { comment: commentBody }})
         setName('')
         setEmail('')
