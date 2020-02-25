@@ -7,19 +7,19 @@ const GuestInput = () => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [comment, setComment] = useState('')
-    const [addComment] = useMutation(
-        ADD_COMMENT, 
-        {
-            update(cache, { data: { addComment } }) {
-                const { comments } = cache.readQuery({ query: GET_COMMENTS });
+    // const [addComment] = useMutation(
+    //     ADD_COMMENT, 
+    //     {
+    //         update(cache, { data: { addComment } }) {
+    //             const { comments } = cache.readQuery({ query: GET_COMMENTS });
 
-                cache.writeQuery({
-                    query: GET_COMMENTS,
-                    data: { comments: comments.concat([addComment]) },
-                });
-            }
-        }
-    )
+    //             cache.writeQuery({
+    //                 query: GET_COMMENTS,
+    //                 data: { comments: comments.concat([addComment]) },
+    //             });
+    //         }
+    //     }
+    // )
 
     // this is mutation object array. 
     // first obj is mutation function
@@ -41,7 +41,7 @@ const GuestInput = () => {
 
         console.log('my comment', commentBody)
         console.log('this is where the add mutation is supposed to be')
-        addComment({ variables: { comment: commentBody }})
+        // addComment({ variables: { comment: commentBody }})
 
         // clears the form after submit
         setName('')
