@@ -23,7 +23,8 @@ const GuestInput = () => {
 
     // this is mutation object array. 
     // first obj is mutation function
-    // second obj is obj with additional keys (for your usage)
+    // second obj is result obj with additional keys (for your usage)
+    //   more info on mutation result object: https://www.apollographql.com/docs/react/data/mutations/#usemutation-api
     // console.log('mutation object', useMutation(ADD_COMMENT))
 
     const onClick = () => {
