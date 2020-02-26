@@ -23,7 +23,7 @@ const GuestBook = () => {
     }
     if (error) {
         console.log(error)
-        return <Typography variant="body1">{error.message}</Typography>
+        return <Typography variant="body1">Oh no! We can't get comments at this time. Please try again later 😢</Typography>
     }
     
     const rows = data.comments

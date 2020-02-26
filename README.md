@@ -13,8 +13,9 @@ npm start
 
 To run the backend:
 ```
-cd server
-npm start
+1. cd server
+2. create .env file with MONGO_CONNECT_URL from .env.example in server directory
+3. npm start
 ```
 
 ### Learn GraphQL/Apollo
