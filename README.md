@@ -1,6 +1,8 @@
 # Guestbook
 A fullstack JavaScript app that allows a user to add comments to a web app. It also shows the wonderful magic of GraphQL, Apollo, and React.
 
+[Full presentation - Creating an app with Apollo](https://slides.com/marianlumba/apollo)
+
 ![guestbook app](app-preview.png "Guestbook")
 
 Both folders (client/server) are separate apps that need to be run separately.
@@ -17,6 +19,8 @@ To run the backend:
 2. create .env file with MONGO_CONNECT_URL from .env.example in server directory
 3. npm start
 ```
+
+Check out the _presentation_ branch if you'd like to see further commented code and details on how `useQuery` and `useMutation` hooks work!
 
 ### Learn GraphQL/Apollo
 Want to know how you can make an app like this? Take a look at the resources below:
