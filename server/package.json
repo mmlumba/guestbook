@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "apollo-server": "^2.9.16",
-    "axios": "^0.19.1",
+    "axios": "^0.21.1",
     "dotenv": "^8.2.0",
     "graphql": "^14.5.8",
     "graphql-scalar-objectid": "^0.1.2",
