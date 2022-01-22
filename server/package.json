@@ -16,7 +16,7 @@
     "graphql-scalar-objectid": "^0.1.2",
     "mongodb": "^3.5.2",
     "mongoose": "^5.8.11",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^3.1.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.2"
